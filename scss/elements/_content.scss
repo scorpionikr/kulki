@@ -1,0 +1,51 @@
+
+main {
+  height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.main__intro {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+
+.intro__info {
+  height: 100%;
+}
+
+.info__small-heading {
+  font-size: 2rem;
+  font-weight: 700;
+  color: $colorfont;
+}
+
+.info__heading {
+  font-size: 3rem;
+  font-weight: 700;
+  color: $colorfont;
+  padding-bottom:  60px;
+}
+
+.item__text {
+  font-weight: 600;
+  font-size: 1rem;
+  color: $colorfont;
+  display: block;
+}
+
+
+.intro__right {
+  width: 40%;
+}
+
+.intro__right > img {
+  width: 100%;
+  display: block;
+  border-radius: 5%;
+  box-shadow: 2px 3px 6px 10px rgba(0, 0, 0, .13);
+}
