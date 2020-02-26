@@ -28,9 +28,11 @@ document.addEventListener("DOMContentLoaded", function(){
     function nextturn (array) {
         for (let i=0; i< 3; i++ ) {
             let ball = randomballs(array);
+            checkfive(balls);
             if (ball.className != "visible") {
                 ball.classList.toggle("visible");
                 ball.style.backgroundColor = colorrandom(tableofcolors);
+                // checkfive(balls);
             } else {
                 ball = randomballs(array);
             }
@@ -41,26 +43,52 @@ document.addEventListener("DOMContentLoaded", function(){
 
         array.forEach(function (kulka) {
             kulka.addEventListener("click", function () {
-                console.log(this)
+                // console.log(this)
                 if (this.className == "visible") {
                     argument = this.getAttribute("style", "backgroundColor")
-                    return kulka;
+                    // let log = true;
                 }
+                return argument;
             });
         })
 
         array2.forEach(function(empt) {
             empt.addEventListener("click", function () {
-                // console.log(this.firstChild)
+                // console.log(funtion(kulka))
                     empt.firstChild.classList.toggle("visible");
-                    console.log(argument);
+                    // console.log(argument);
                     empt.firstChild.setAttribute("style", argument);
+                    // checkfive(balls);
             });
+
         })
     }
 
     function checkfive (array) {
-
+        let tablefrom = [];
+        let argument1;
+        let argument2;
+        let counter =1;
+        for (let i = 0; i < array.length - 1; i++) {
+                argument1 = array[i].getAttribute("style", "backgroundColor")
+                argument2 = array[i + 1].getAttribute("style", "backgroundColor")
+                if (argument1 == argument2 && argument1 != null && argument2 != null) {
+                        tablefrom.push(i);
+                        tablefrom.push(i+1);
+                        counter = counter +1;
+                        console.log(counter)
+                        console.log(tablefrom)
+                        // console.log(tablefrom.length)
+                }
+        }
+                if (counter % 5 == 0) {
+                    for (let j = 0; j < tablefrom.length; j++) {
+                        array[tablefrom[j]].classList.remove("visible");
+                        }
+                    tablefrom.length = 0;
+                    counter = 1;
+                    navigame[1].firstElementChild.innerText = parseInt(navigame[1].firstElementChild.innerText) + 2;
+                }
     }
 
     function checkfull (array) {
@@ -85,6 +113,7 @@ document.addEventListener("DOMContentLoaded", function(){
             const interval = setInterval(function(){
                 if (checkfull(array) < 100) {
                     nextturn(balls);
+                    // checkfive(balls);
                 } else {
                     clearInterval(interval);
                     end_game();
@@ -102,7 +131,10 @@ document.addEventListener("DOMContentLoaded", function(){
     }
 
     function newgame(button) {
+
         button.addEventListener("click", function () {
+            form.addEventListener("submit", function(event){
+            event.preventDefault();
             let name = button.parentElement.parentElement.querySelector("input").value;
             let alert = button.parentElement.parentElement.querySelector("span");
             if (name.length > 2) {
@@ -121,6 +153,7 @@ document.addEventListener("DOMContentLoaded", function(){
                 // console.log(alert)
                 alert.innerText = "Name is to short!";
             }
+        });
         });
     }
 
