@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", function(){
     const navigame = document.querySelector("#navigation2").querySelectorAll( "ul li")
     const info = document.querySelector(".intro__info");
     const howto = document.querySelector(".intro__howto");
-    const howtobutton = document.querySelector("#howto_button");
+    const howtobutton = document.querySelector("i");
     const end = document.querySelector(".intro__end");
     const form = document.querySelector(".intro__form");
     const game = document.querySelector(".intro__game");
@@ -25,7 +25,8 @@ document.addEventListener("DOMContentLoaded", function(){
     }
 
     function nextturn (array) {
-        checkfive(balls);
+        checkfifecolumn(balls);
+        checkfiverows(balls);
         for (let i=0; i< 3; i++ ) {
             let ball = randomballs(array);
             if (ball.className != "visible") {
@@ -40,6 +41,7 @@ document.addEventListener("DOMContentLoaded", function(){
             kulka.addEventListener("click", function () {
                 if (this.className == "visible") {
                     argument = this.getAttribute("style", "backgroundColor")
+                    this.style.backgroundColor = "";
                 }
                 return argument;
             });
@@ -52,72 +54,78 @@ document.addEventListener("DOMContentLoaded", function(){
         })
     }
 
-    for (let i=0; i< 9; i++) {
-        table.push (rows[i].querySelectorAll("td"));
-    }
+    // for (let j = 0; j < 10; j++) {
+    //     for (let i = 0; i < balls.length-10; i = i + 10) {
+    //         console.log(balls[i+j]);
+    //     }
+    // }
     // console.log(table[1][1].querySelector("span"))
     // console.log(table.length);
+    // console.log(rows[0].querySelector("td").querySelector("span"));
 
-
-    function checkrows (array) {
+    function checkfifecolumn (array) {
         let tablefrom = [];
         let argument1;
         let argument2;
+        let argument3;
+        let argument4;
         let counter = 1;
-        for (let i = 0; i < array.length; i++) {
-            for (let k = 0; k < array[i].length; k++) {
-            argument1 = array[i][k].querySelector("span").getAttribute("style", "backgroundColor")
-            argument2 = array[i][k + 1].querySelector("span").getAttribute("style", "backgroundColor")
-            if (argument1 == argument2 && argument1 != null && argument2 != null) {
-                tablefrom.push([i][k]);
-                // tablefrom.push([i][k+1]);
-                counter = counter +1;
-                console.log(counter)
-                console.log(tablefrom)
+        for (let j = 0; j < 10; j++) {
+            for (let i = 0; i < array.length - 10; i = i + 10) {
+                argument1 = array[i + j].getAttribute("style", "backgroundColor")
+                argument2 = array[i + j + 10].getAttribute("style", "backgroundColor")
+                argument3 = array[i+ j].classList;
+                argument4 = array[i+j +10].classList;
+                if (argument1 == argument2 && argument1 != null && argument2 != null && argument3 == "visible" && argument4 == "visible") {
+                    tablefrom.push([i+j]);
+                    tablefrom.push([i +j + 10]);
+                    counter = counter + 1;
+                    console.log(counter)
+                    console.log("colum: " +tablefrom.length)
+                    console.log("colum: " +tablefrom)
                 }
             }
         }
-        // if (counter % 5 == 0) {
-        //     for (let j = 0; j < tablefrom.length; j++) {
-        //         array[tablefrom[j]].querySelector("span").classList.remove("visible");
-        //         array[tablefrom[j]].querySelector("span").style.backgroundColor = "";
-        //     }
-        //     counter = 1;
-        //     tablefrom.length = 0;
-        //     navigame[1].firstElementChild.innerText = parseInt(navigame[1].firstElementChild.innerText) + 5;
-        // }
 
+        if (counter % 5 == 0) {
+            for (let k = 0; k < tablefrom.length; k++) {
+                array[tablefrom[k]].classList.remove("visible");
+                array[tablefrom[k]].style.backgroundColor = "";
+            }
+            counter = 1;
+            tablefrom.length = 0;
+            navigame[1].firstElementChild.innerText = parseInt(navigame[1].firstElementChild.innerText) + 5;
+        }
     }
 
-
-    function checkfive (array) {
+    function checkfiverows (array) {
         let tablefrom = [];
-        let tabledest = [];
         let argument1;
         let argument2;
+        let argument3;
+        let argument4;
         let counter = 1;
         for (let i = 0; i < array.length - 1; i++) {
             argument1 = array[i].getAttribute("style", "backgroundColor")
             argument2 = array[i + 1].getAttribute("style", "backgroundColor")
-            if (argument1 == argument2 && argument1 != null && argument2 != null) {
+            argument3 = array[i].classList;
+            argument4 = array[i+1].classList;
+            if (argument1 == argument2 && argument1 != null && argument2 != null && argument3 == "visible" && argument4 == "visible") {
                 tablefrom.push(i);
                 tablefrom.push(i+1);
                 counter = counter +1;
-                tabledest = tablefrom.filter(function(element, index, array) {
-                    return (i+1) - i ==1;
-                });
                 console.log(counter)
-                console.log(tabledest)
+                console.log("rows: " +tablefrom.length)
+                console.log("rows: " +tablefrom)
             }
         }
         if (counter % 5 == 0) {
-            for (let j = 0; j < tabledest.length; j++) {
-                array[tabledest[j]].classList.remove("visible");
-                array[tabledest[j]].style.backgroundColor = "";
+            for (let j = 0; j < tablefrom.length; j++) {
+                array[tablefrom[j]].classList.remove("visible");
+                array[tablefrom[j]].style.backgroundColor = "";
             }
             counter = 1;
             tablefrom.length = 0;
-            tabledest.length = 0;
             navigame[1].firstElementChild.innerText = parseInt(navigame[1].firstElementChild.innerText) + 5;
         }
     }

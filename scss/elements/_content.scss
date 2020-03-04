@@ -13,11 +13,9 @@ main {
   width: 100%;
   padding-left: 10px;
   padding-right: 10px;
-  //height: 100%-10%;
 }
 
 .intro__info {
-  //margin: auto;
   height: 100%;
 }
 
@@ -65,15 +63,15 @@ main {
   border-radius: 5%;
   width: 45%;
   max-height: 100%;
-  //overflow-y: scroll;
+  overflow-y: auto;
 }
 
 .intro__howto > ul {
-  //margin-left: 50px;
   height: 75vh;
   max-height: 450px;
   padding: 20px;
   padding-left: 50px;
+  padding-top: 40px;
 }
 
 .intro__howto >ul >li {
@@ -82,16 +80,14 @@ main {
   color: $colorfont2;
 }
 
-.intro__howto button {
+.intro__howto i {
   position: absolute;
-  background-color: $colorborder;
-  padding: 10px 10px;
+  color: $colorborder;
   display: block;
-  color: white;
-  font-size: 1rem;
+  font-size: 2.5rem;
   border: none;
   border-radius: 8px;
   cursor: pointer;
-  right: 20px;
-  bottom: 20px;
+  right: 10px;
+  top: 10px;
 }
