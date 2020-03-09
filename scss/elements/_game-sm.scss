@@ -1,0 +1,26 @@
+
+.intro__game {
+  max-height: 450px;
+  max-width: 450px;
+  height: 90vw;
+  width: 90vw;
+  margin: auto;
+  position: relative;
+}
+
+.intro__game > i {
+  display: block;
+  position: absolute;
+  color: $colorborder;
+  font-size: 2.5rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  right: -13px;
+  top: -13px;
+}
+
+.intro__game table {
+  height: 100%;
+  width: 100%;
+}

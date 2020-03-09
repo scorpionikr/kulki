@@ -1,0 +1,41 @@
+main {
+  align-items: flex-start;
+}
+
+.main__intro {
+  justify-content: center;
+  align-items: center;
+}
+
+.intro__info {
+ display: none;
+}
+
+.intro__right {
+  height: 75vh;
+  width: auto;
+}
+
+.intro__right > img {
+  max-height: 75vh;
+  height: auto;
+  width: 90vw;
+}
+
+.intro__howto {
+  max-height: 450px;
+  max-width: 450px;
+  height: 90vw;
+  width: 90vw;
+}
+
+.intro__howto >ul >li {
+  padding:  0.3vw;
+  font-size: 1.3rem;
+  color: $colorfont2;
+}
+
+.info__small-heading {
+  text-align: center;
+  font-size: 1.5rem;
+}

@@ -5,16 +5,20 @@ document.addEventListener("DOMContentLoaded", function(){
     const navigame = document.querySelector("#navigation2").querySelectorAll( "ul li")
     const info = document.querySelector(".intro__info");
     const howto = document.querySelector(".intro__howto");
-    const howtobutton = document.querySelector("i");
+    const howtobutton = document.querySelector(".howto__close");
     const end = document.querySelector(".intro__end");
     const form = document.querySelector(".intro__form");
     const game = document.querySelector(".intro__game");
     const startgame = document.querySelector(".form__start");
     const cancelgame = document.querySelector(".form__cancel");
+    const endbutton = document.querySelectorAll(".button_end_game");
     const rows = document.querySelector(".intro__game").querySelectorAll("tr");
     const balls = document.querySelector(".intro__game").querySelectorAll("span");
     const empty = document.querySelector(".intro__game").querySelectorAll("td");
-
+    const hamburger = document.querySelector(".hamburger");
+    const mobile = window.matchMedia("screen and (max-width: 1023px)");
+    const pc = window.matchMedia("screen and (min-width: 1024px)");
+    const picture = document.querySelector(".intro__right");
 
     function colorrandom (array){
         return array[Math.floor(Math.random()*array.length)];
@@ -54,15 +58,6 @@ document.addEventListener("DOMContentLoaded", function(){
         })
     }
 
-    // for (let j = 0; j < 10; j++) {
-    //     for (let i = 0; i < balls.length-10; i = i + 10) {
-    //         console.log(balls[i+j]);
-    //     }
-    // }
-    // console.log(table[1][1].querySelector("span"))
-    // console.log(table.length);
-    // console.log(rows[0].querySelector("td").querySelector("span"));
-
     function checkfifecolumn (array) {
         let tablefrom = [];
         let argument1;
@@ -92,9 +87,9 @@ document.addEventListener("DOMContentLoaded", function(){
                 array[tablefrom[k]].classList.remove("visible");
                 array[tablefrom[k]].style.backgroundColor = "";
             }
+            navigame[1].firstElementChild.innerText = parseInt(navigame[1].firstElementChild.innerText) + counter;
             counter = 1;
             tablefrom.length = 0;
-            navigame[1].firstElementChild.innerText = parseInt(navigame[1].firstElementChild.innerText) + 5;
         }
     }
 
@@ -124,9 +119,9 @@ document.addEventListener("DOMContentLoaded", function(){
                 array[tablefrom[j]].classList.remove("visible");
                 array[tablefrom[j]].style.backgroundColor = "";
             }
+            navigame[1].firstElementChild.innerText = parseInt(navigame[1].firstElementChild.innerText) + counter;
             counter = 1;
             tablefrom.length = 0;
-            navigame[1].firstElementChild.innerText = parseInt(navigame[1].firstElementChild.innerText) + 5;
         }
     }
 
@@ -160,12 +155,20 @@ document.addEventListener("DOMContentLoaded", function(){
     }
 
     function start(button) {
-        button.addEventListener("click", function () {
-                button.parentElement.parentElement.classList.add("unvisible")
-                info.classList.toggle("unvisible");
-                form.classList.toggle("unvisible");
-        });
-    }
+                button.addEventListener("click", function () {
+                    if (mobile.matches || window.innerWidth < 1023) {
+                        // button.parentElement.parentElement.classList.toggle("unvisible");
+                        picture.classList.toggle("unvisible");
+                        form.classList.toggle("unvisible");
+                        hamburger.classList.toggle("unvisible");
+                        navi[0].parentElement.classList.toggle('unvisible');
+                    } else {
+                        button.parentElement.parentElement.classList.add("unvisible");
+                        info.classList.toggle("unvisible");
+                        form.classList.toggle("unvisible");
+                    }
+                });
+            }
 
     function newgame(button) {
         button.addEventListener("click", function () {
@@ -179,6 +182,9 @@ document.addEventListener("DOMContentLoaded", function(){
                 game.classList.toggle("unvisible");
                 form.classList.toggle("unvisible");
                 navigame[0].parentElement.parentElement.classList.toggle("unvisible");
+                if (mobile.matches || window.innerWidth < 1023) {
+                    endbutton[1].classList.toggle("unvisible");
+                }
                 alert.innerText ="";
                 cleargame(balls);
                 nextturn(balls);
@@ -194,10 +200,16 @@ document.addEventListener("DOMContentLoaded", function(){
 
     function cancel(button) {
         button.addEventListener("click", function () {
-            info.classList.toggle("unvisible");
-            form.classList.toggle("unvisible");
-            navigame[0].parentElement.parentElement.classList.add("unvisible");
-            navi[0].parentElement.parentElement.classList.toggle("unvisible");
+            if (mobile.matches || window.innerWidth < 1023) {
+                picture.classList.toggle("unvisible");
+                form.classList.toggle("unvisible");
+                hamburger.classList.toggle("unvisible");
+            } else {
+                info.classList.toggle("unvisible");
+                form.classList.toggle("unvisible");
+                navigame[0].parentElement.parentElement.classList.add("unvisible");
+                navi[0].parentElement.parentElement.classList.toggle("unvisible");
+            }
         });
     }
 
@@ -215,24 +227,59 @@ document.addEventListener("DOMContentLoaded", function(){
         }, 5000);
     }
 
-    function endgame(button) {
-        button.addEventListener("click", function () {
-            end_game()
-        });
+    function endgame(button, button2) {
+        if (mobile.matches || window.innerWidth < 1023) {
+            button2.addEventListener("click", function () {
+                end_game()
+            });
+        } else {
+            button.addEventListener("click", function () {
+                end_game()
+            });
+        }
     }
 
     function how_to(button) {
         button.addEventListener("click", function () {
-            info.classList.toggle("unvisible");
-            howto.classList.toggle("unvisible");
-            navi[0].parentElement.parentElement.classList.toggle("unvisible");
+            if (mobile.matches || window.innerWidth < 1023) {
+                picture.classList.toggle("unvisible");
+                howto.classList.toggle("unvisible");
+                hamburger.classList.toggle("unvisible");
+                navi[0].parentElement.classList.toggle('unvisible');
+            } else {
+                info.classList.toggle("unvisible");
+                howto.classList.toggle("unvisible");
+                navi[0].parentElement.parentElement.classList.toggle("unvisible");
+            }
         });
         howtobutton.addEventListener("click", function () {
-            info.classList.toggle("unvisible");
-            howto.classList.toggle("unvisible");
-            navi[0].parentElement.parentElement.classList.toggle("unvisible");
+            if (mobile.matches || window.innerWidth < 1023) {
+                picture.classList.toggle("unvisible");
+                howto.classList.toggle("unvisible");
+                hamburger.classList.toggle("unvisible");
+            } else {
+                info.classList.toggle("unvisible");
+                howto.classList.toggle("unvisible");
+                navi[0].parentElement.parentElement.classList.toggle("unvisible");
+            }
         });
     }
+
+    // mobile kod
+
+    // mobile.addListener( function(mobile) {
+        if (mobile.matches || window.innerWidth < 1023) {
+            navi[0].parentElement.classList.toggle('unvisible');
+            hamburger.classList.toggle("unvisible");
+        }
+    // });
+
+    function humburger_menu (button) {
+        button.addEventListener("click", function () {
+            navi[0].parentElement.classList.toggle("unvisible");
+        });
+    }
+
 
     //main program
 
@@ -240,5 +287,6 @@ document.addEventListener("DOMContentLoaded", function(){
     how_to(navi[1]);
     newgame(startgame);
     cancel(cancelgame);
-    endgame(navigame[2]);
+    humburger_menu (hamburger);
+    endgame(endbutton[0], endbutton[1]);
 });

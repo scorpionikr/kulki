@@ -1,0 +1,39 @@
+
+.intro__form {
+  max-height: 450px;
+  max-width: 450px;
+  height: 90vw;
+  width: 90vw;
+}
+
+.form__heading {
+  padding-top: 30px;
+  text-align: center;
+}
+
+.form__field > label, .form__field > span{
+  font-size: 1.8rem;
+  text-align: center;
+}
+
+#alert {
+  font-size: 1rem;
+  text-align: center;
+}
+
+.form__field > input {
+  margin: 10px;
+  font-size: 1.5rem;
+  line-height: 1.5rem;
+  margin: auto;
+  width: 60%;
+}
+
+.form__start, .form__cancel {
+  font-size: 1.5rem;
+}
+
+.form__buttons {
+  margin: 10px;
+  text-align: center;
+}

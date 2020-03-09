@@ -6,3 +6,11 @@
 @import "elements/form";
 @import "elements/game";
 @import "elements/footer";
+
+@media screen and (max-width: 1023px){
+  @import './elements/content-sm';
+  @import './elements/footer-sm';
+  @import './elements/form-sm';
+  @import './elements/header-sm';
+  @import './elements/game-sm';
+}

@@ -1,0 +1,44 @@
+#navigation {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  flex-direction: column;
+}
+#navigation > ul{
+  background-color: $color1;
+  position: fixed;
+  top: 70px;
+  right: 10px;
+  &:active {
+    color: $colorborder;
+  }
+}
+
+#navigation > ul >li {
+  display: block;
+}
+
+
+#navigation2 > ul >li {
+  display: block;
+  padding: 0px 20px;
+}
+
+
+#navigation2 > ul >li:last-child {
+  display: none;
+}
+
+
+#navigation2 > ul >li:nth-child(2) {
+  font-size: 1rem;
+}
+
+.hamburger {
+  color: $colorfont;
+  font-size: 4em;
+  cursor: pointer;
+  &:active {
+    color: $colorborder;
+  }
+}

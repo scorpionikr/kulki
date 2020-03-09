@@ -3,7 +3,7 @@
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  height: 15vh;
+  min-height: 15vh;
   padding-left: 10px;
   padding-right: 10px;
 }
@@ -37,3 +37,8 @@
 .header-content > nav > ul >li >a:hover {
    color: $colorborder;
 }
+
+.hamburger {
+
+}
+

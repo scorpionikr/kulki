@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Kulki</title>
   <link href="https://fonts.googleapis.com/css?family=Sriracha&display=swap&subset=latin-ext" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css"/>
@@ -14,7 +15,9 @@
   <section class="container">
   <div class="header-content">
      <span>Kulki</span>
+
       <nav id="navigation">
+          <i class="hamburger fas fa-bars unvisible"></i>
       <ul>
         <li>
           <a href="#">New game</a>
@@ -27,11 +30,12 @@
         </li>
       </ul>
       </nav>
+
       <nav id="navigation2" class="unvisible">
           <ul>
               <li>Welcome <span id="#name"></span> !</li>
               <li>Your score: <span id="#score">0</span> points!</li>
-              <li><a href="#">End Game</a></li>
+              <li><a href="#" class="button_end_game">End Game</a></li>
           </ul>
       </nav>
   </div>
@@ -51,11 +55,11 @@
                 <li>Kolejne kulki pojawiają się na planszy co 3 sekundy. Jeśli chcesz przenieść kulkę w inne miejsce na planszy kliknij ją (kulka zniknie z planszy) a następnie kliknij w miejsce gdzie chcesz ją przenieść.</li>
                 <li>Gra kończy się po zapełnieniu planszy kulkami. Grę można zakonczyć też wcześniej klikając przycisk "End Game"</li>
             </ul>
-            <i class="fas fa-times-circle"></i>
+            <i class="howto__close fas fa-times-circle"></i>
         </div>
 
         <div class="intro__end unvisible">
-            <span class="info__small-heading ">Congratulations <span></span>! Try again!</span>
+            <span class="info__small-heading ">Congratulations <span></span>!</span>
             <h2 class="info__small-heading">Your score is: <span></span> points!</h2>
         </div>
 
@@ -75,6 +79,7 @@
         </div>
         .
         <div class="intro__game unvisible">
+            <i class="fas fa-times-circle button_end_game unvisible"></i>
             <table>
                 <tbody>
                 <tr>
@@ -109,7 +114,6 @@
                 </tr>
                 </tbody>
             </table>
-
         </div>
 
         <div class="intro__right">
@@ -124,7 +128,7 @@
 <footer>
   <section class="container">
     <div class="footer-content">
-      <span>Kulki ver. 1.5</span>
+      <span>Kulki ver. 2.0</span>
       <span>Copyright: ScorpionikR</span>
     </div>
   </section>
