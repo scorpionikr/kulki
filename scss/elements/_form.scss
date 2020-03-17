@@ -4,34 +4,44 @@
   background-color: white;
   box-sizing: border-box;
   border-radius: 5%;
-  //margin: auto;
+  height: 75vh;
+  width: 45%;
+  max-width: 450px;
+  max-height: 450px;
+  margin: auto;
   //height: 100%;
 }
 
 .form__heading {
   padding: 10px 30px;
   font-weight: 700;
-  font-size: 2rem;
+  font-size: 2.5rem;
+  text-align: center;
   //color: $colorfont3;
 }
 
 .form__field > label, .form__field > span{
   padding: 10px 30px;
   display: block;
-  font-size: 1rem;
+  font-size: 2rem;
+  text-align: center;
   //color:$colorfont3;
 }
 
 #alert {
   color: red;
+  text-align: center;
+  font-size: 1.5rem;
 }
 
 .form__field > input {
-  margin: 10px 30px;
+  //margin: 10px 30px;
   display: block;
-  font-size: 1rem;
+  font-size: 1.5rem;
   line-height: 1rem;
   border: none;
+  width: 50%;
+  margin: auto;
 }
 
 .form__start, .form__cancel {
@@ -39,7 +49,7 @@
   padding: 10px 10px;
   display: inline-block;
   color: white;
-  font-size: 1rem;
+  font-size: 1.5rem;
   border: none;
   border-radius: 8px;
   margin-right: 10px;
@@ -48,4 +58,5 @@
 
 .form__buttons {
   margin: 30px 30px;
+  text-align: center;
 }

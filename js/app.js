@@ -17,7 +17,6 @@ document.addEventListener("DOMContentLoaded", function(){
     const empty = document.querySelector(".intro__game").querySelectorAll("td");
     const hamburger = document.querySelector(".hamburger");
     const mobile = window.matchMedia("screen and (max-width: 1023px)");
-    const pc = window.matchMedia("screen and (min-width: 1024px)");
     const picture = document.querySelector(".intro__right");
 
     function colorrandom (array){
@@ -82,7 +81,7 @@ document.addEventListener("DOMContentLoaded", function(){
             }
         }
 
-        if (counter % 5 == 0) {
+        if (counter >= 5) {
             for (let k = 0; k < tablefrom.length; k++) {
                 array[tablefrom[k]].classList.remove("visible");
                 array[tablefrom[k]].style.backgroundColor = "";
@@ -114,7 +113,7 @@ document.addEventListener("DOMContentLoaded", function(){
                 console.log("rows: " +tablefrom)
             }
         }
-        if (counter % 5 == 0) {
+        if (counter >= 5) {
             for (let j = 0; j < tablefrom.length; j++) {
                 array[tablefrom[j]].classList.remove("visible");
                 array[tablefrom[j]].style.backgroundColor = "";
@@ -230,10 +229,12 @@ document.addEventListener("DOMContentLoaded", function(){
     function endgame(button, button2) {
         if (mobile.matches || window.innerWidth < 1023) {
             button2.addEventListener("click", function () {
+                console.log("koniec")
                 end_game()
             });
         } else {
             button.addEventListener("click", function () {
+                console.log("koniec")
                 end_game()
             });
         }
@@ -267,19 +268,16 @@ document.addEventListener("DOMContentLoaded", function(){
 
     // mobile kod
 
-    // mobile.addListener( function(mobile) {
-        if (mobile.matches || window.innerWidth < 1023) {
-            navi[0].parentElement.classList.toggle('unvisible');
-            hamburger.classList.toggle("unvisible");
+    const menu = document.querySelector('.navigation-list');
+    hamburger.addEventListener('click', function(){
+        menu.classList.toggle('visible');
+        menu.classList.toggle('unvisible');
+    });
+    mobile.addListener(function(){
+        if (mobile.matches) {
+            menu.classList.remove('visible');
         }
-    // });
-
-    function humburger_menu (button) {
-        button.addEventListener("click", function () {
-            navi[0].parentElement.classList.toggle("unvisible");
-        });
-    }
-
+    });
 
     //main program
 
@@ -287,6 +285,5 @@ document.addEventListener("DOMContentLoaded", function(){
     how_to(navi[1]);
     newgame(startgame);
     cancel(cancelgame);
-    humburger_menu (hamburger);
     endgame(endbutton[0], endbutton[1]);
 });

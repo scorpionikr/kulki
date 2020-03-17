@@ -1,12 +1,29 @@
-@import "generic/reset";
+@import "settings/reset";
 @import "settings/colors";
-@import "elements/base";
+@import "settings/base";
+
+//nacigacja responsywnosc
+
+.navigation-list {
+  @media screen and (min-width: 1024px){
+    display: block;
+  }
+}
+
+@media screen and (min-width: 1024px){
+  .hamburger {
+    display: none;
+  }
+}
+
+//Desktop
 @import "elements/header";
 @import "elements/content";
 @import "elements/form";
 @import "elements/game";
 @import "elements/footer";
 
+//Dla tabletow i komorek
 @media screen and (max-width: 1023px){
   @import './elements/content-sm';
   @import './elements/footer-sm';
@@ -14,3 +31,4 @@
   @import './elements/header-sm';
   @import './elements/game-sm';
 }
+
