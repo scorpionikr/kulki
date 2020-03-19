@@ -82,10 +82,14 @@ document.addEventListener("DOMContentLoaded", function(){
         }
 
         if (counter >= 5) {
-            for (let k = 0; k < tablefrom.length; k++) {
-                array[tablefrom[k]].classList.remove("visible");
-                array[tablefrom[k]].style.backgroundColor = "";
-            }
+            tablefrom.forEach(function(element) {
+                array[element].classList.add("scale");
+                setTimeout(() => {
+                    array[element].classList.remove('scale');
+                    array[element].classList.remove("visible");
+                    array[element].style.backgroundColor = "";
+                }, 500);
+            });
             navigame[1].firstElementChild.innerText = parseInt(navigame[1].firstElementChild.innerText) + counter;
             counter = 1;
             tablefrom.length = 0;
@@ -114,10 +118,15 @@ document.addEventListener("DOMContentLoaded", function(){
             }
         }
         if (counter >= 5) {
-            for (let j = 0; j < tablefrom.length; j++) {
-                array[tablefrom[j]].classList.remove("visible");
-                array[tablefrom[j]].style.backgroundColor = "";
-            }
+            tablefrom.forEach(function(element) {
+                array[element].classList.add("scale");
+                setTimeout(() => {
+                    array[element].classList.remove('scale');
+                    array[element].classList.remove("visible");
+                    array[element].style.backgroundColor = "";
+                }, 500);
+            });
+
             navigame[1].firstElementChild.innerText = parseInt(navigame[1].firstElementChild.innerText) + counter;
             counter = 1;
             tablefrom.length = 0;
@@ -272,6 +281,10 @@ document.addEventListener("DOMContentLoaded", function(){
     hamburger.addEventListener('click', function(){
         menu.classList.toggle('visible');
         menu.classList.toggle('unvisible');
+        navi[0].parentElement.classList.remove('up');
+        navigame[0].parentElement.parentElement.classList.remove('up');
+        hamburger.classList.remove('up');
+
     });
     mobile.addListener(function(){
         if (mobile.matches) {
