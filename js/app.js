@@ -5,6 +5,9 @@ document.addEventListener("DOMContentLoaded", function(){
     const navigame = document.querySelector("#navigation2").querySelectorAll( "ul li")
     const info = document.querySelector(".intro__info");
     const howto = document.querySelector(".intro__howto");
+    const scores_h = document.querySelector(".intro__scores");
+    const scoresbutton = document.querySelector(".scores__close");
+    const default_text = document.querySelector(".default_text");
     const howtobutton = document.querySelector(".howto__close");
     const end = document.querySelector(".intro__end");
     const form = document.querySelector(".intro__form");
@@ -226,6 +229,7 @@ document.addEventListener("DOMContentLoaded", function(){
         let score = navigame[1].firstElementChild.innerText
         end.firstElementChild.firstElementChild.innerText = name;
         end.lastElementChild.firstElementChild.innerText = score;
+        putscores(name, score);
         game.classList.toggle("unvisible");
         end.classList.toggle("unvisible");
         navigame[0].parentElement.parentElement.classList.toggle("unvisible");
@@ -274,6 +278,79 @@ document.addEventListener("DOMContentLoaded", function(){
             }
         });
     }
+    //punkty
+
+    function getscores (element) {
+        var url = "http://192.168.0.13:5000";
+        var menu = $(element);
+        $.ajax({
+            method: "GET",
+            url: url + "/winners",
+            dataType: "json"
+        }).done(function (response) {
+            if (response.length >0) {
+                menu.empty();
+                for (let i = 0; i < response.length; i++) {
+                    var li = $('<li>Gracz ' + response[i].name + ' zdobył : ' + response[i].scores + ' punktów</li>');
+                    menu.append(li).slideDown();
+                }
+                default_text.classList.add("unvisible")
+            }
+            console.log("Pobrano dane")
+            console.log(response)
+        }).fail(function (error) {
+            console.log("brak danych w pliku")
+        }).always(function (always) {
+            console.log("zakonczono");
+        })
+    }
+
+    function putscores(name, scores) {
+        var url = "http://192.168.0.13:5000";
+        var winner = {
+            name: name,
+            scores: scores
+        }
+        $.ajax({
+            method: "POST",
+            url: url + "/winners",
+            dataType: "json",
+            data: winner
+        }).done(function (response) {
+            console.log("poszlo")
+        }).fail(function (error) {
+            console.log("nie poszlo");
+        }).always(function (always) {
+            console.log("zakonczono");
+        })
+    }
+
+    function scores(button) {
+        button.addEventListener("click", function () {
+          getscores(scores_h.querySelector("ul"))
+            if (mobile.matches || window.innerWidth < 1023) {
+                picture.classList.toggle("unvisible");
+                scores_h.classList.toggle("unvisible");
+                hamburger.classList.toggle("unvisible");
+                navi[0].parentElement.classList.toggle('unvisible');
+            } else {
+                info.classList.toggle("unvisible");
+                scores_h.classList.toggle("unvisible");
+                navi[0].parentElement.parentElement.classList.toggle("unvisible");
+            }
+        });
+        scoresbutton.addEventListener("click", function () {
+            if (mobile.matches || window.innerWidth < 1023) {
+                picture.classList.toggle("unvisible");
+                scores_h.classList.toggle("unvisible");
+                hamburger.classList.toggle("unvisible");
+            } else {
+                info.classList.toggle("unvisible");
+                scores_h.classList.toggle("unvisible");
+                navi[0].parentElement.parentElement.classList.toggle("unvisible");
+            }
+        });
+    }
 
     // mobile kod
 
@@ -296,6 +373,7 @@ document.addEventListener("DOMContentLoaded", function(){
 
     start(navi[0]);
     how_to(navi[1]);
+    scores(navi[2]);
     newgame(startgame);
     cancel(cancelgame);
     endgame(endbutton[0], endbutton[1]);

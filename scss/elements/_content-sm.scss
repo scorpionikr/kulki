@@ -35,6 +35,20 @@ main {
   color: $colorfont2;
 }
 
+
+.intro__scores {
+  max-height: 450px;
+  max-width: 450px;
+  height: 90vw;
+  width: 90vw;
+}
+
+.intro__scores >ul >li {
+  padding:  0.3vw;
+  font-size: 1.3rem;
+  color: $colorfont2;
+}
+
 .info__small-heading {
   text-align: center;
   font-size: 1.5rem;
