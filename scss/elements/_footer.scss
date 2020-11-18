@@ -6,6 +6,10 @@
   height: 10vh;
   padding-left: 10px;
   padding-right: 10px;
+  a {
+    color: $colorfont;
+    text-decoration: none;
+  }
 }
 
 .footer-content > span {

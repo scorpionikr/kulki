@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", function(){
     const table = [];
+    const BaseUrl = "https://jsonsscorpionikr.herokuapp.com"
     const tableofcolors = ["yellow", "red", "green", "blue", "orange"];
     const navi = document.querySelector("#navigation").querySelectorAll( "ul li")
     const navigame = document.querySelector("#navigation2").querySelectorAll( "ul li")
@@ -42,20 +43,19 @@ document.addEventListener("DOMContentLoaded", function(){
         }
     }
 
-    function selectball (array, array2) {
-        array.forEach(function (kulka) {
+    function selectball (balls, emptys) {
+        balls.forEach(function (kulka) {
             kulka.addEventListener("click", function () {
                 if (this.className == "visible") {
                     argument = this.getAttribute("style", "backgroundColor")
                     this.style.backgroundColor = "";
                 }
-                return argument;
             });
         })
-        array2.forEach(function(empt) {
+        emptys.forEach(function(empt) {
             empt.addEventListener("click", function () {
-                    empt.firstChild.classList.toggle("visible");
-                    empt.firstChild.setAttribute("style", argument);
+                    this.firstChild.classList.toggle("visible");
+                    this.firstChild.setAttribute("style", argument);
             });
         })
     }
@@ -112,12 +112,12 @@ document.addEventListener("DOMContentLoaded", function(){
             argument3 = array[i].classList;
             argument4 = array[i+1].classList;
             if (argument1 == argument2 && argument1 != null && argument2 != null && argument3 == "visible" && argument4 == "visible") {
-                tablefrom.push(i);
-                tablefrom.push(i+1);
-                counter = counter +1;
-                console.log(counter)
-                console.log("rows: " +tablefrom.length)
-                console.log("rows: " +tablefrom)
+                    tablefrom.push(i);
+                    tablefrom.push(i+1);
+                    counter = counter +1;
+                    console.log(counter)
+                    console.log("rows: " +tablefrom.length)
+                    console.log("rows: " +tablefrom)
             }
         }
         if (counter >= 5) {
@@ -162,7 +162,7 @@ document.addEventListener("DOMContentLoaded", function(){
                     end_game();
                 }
                 return interval;
-            }, 3000);
+            }, 1000);
     }
 
     function start(button) {
@@ -187,7 +187,7 @@ document.addEventListener("DOMContentLoaded", function(){
             event.preventDefault();
             let name = button.parentElement.parentElement.querySelector("input").value;
             let alert = button.parentElement.parentElement.querySelector("span");
-            if (name.length > 2) {
+            if (name.length >= 2) {
                 button.parentElement.parentElement.querySelector("input").value = "";
                 navigame[0].firstElementChild.innerText = name;
                 game.classList.toggle("unvisible");
@@ -281,7 +281,7 @@ document.addEventListener("DOMContentLoaded", function(){
     //punkty
 
     function getscores (element) {
-        var url = "http://192.168.0.13:5000";
+        var url = BaseUrl;
         var menu = $(element);
         $.ajax({
             method: "GET",
@@ -306,7 +306,7 @@ document.addEventListener("DOMContentLoaded", function(){
     }
 
     function putscores(name, scores) {
-        var url = "http://192.168.0.13:5000";
+        var url = BaseUrl;
         var winner = {
             name: name,
             scores: scores
