@@ -22,6 +22,24 @@ document.addEventListener("DOMContentLoaded", function(){
     const hamburger = document.querySelector(".hamburger");
     const mobile = window.matchMedia("screen and (max-width: 1023px)");
     const picture = document.querySelector(".intro__right");
+    var mySound;
+
+    mySound = new sound("files/alert.mp3");
+
+    function sound(src) {
+        this.sound = document.createElement("audio");
+        this.sound.src = src;
+        this.sound.setAttribute("preload", "auto");
+        this.sound.setAttribute("controls", "none");
+        this.sound.style.display = "none";
+        document.body.appendChild(this.sound);
+        this.play = function(){
+            this.sound.play();
+        }
+        this.stop = function(){
+            this.sound.pause();
+        }
+    }
 
     function colorrandom (array){
         return array[Math.floor(Math.random()*array.length)];
@@ -93,6 +111,7 @@ document.addEventListener("DOMContentLoaded", function(){
                     array[element].style.backgroundColor = "";
                 }, 500);
             });
+            mySound.play();
             navigame[1].firstElementChild.innerText = parseInt(navigame[1].firstElementChild.innerText) + counter;
             counter = 1;
             tablefrom.length = 0;
@@ -129,7 +148,7 @@ document.addEventListener("DOMContentLoaded", function(){
                     array[element].style.backgroundColor = "";
                 }, 500);
             });
-
+            mySound.play();
             navigame[1].firstElementChild.innerText = parseInt(navigame[1].firstElementChild.innerText) + counter;
             counter = 1;
             tablefrom.length = 0;

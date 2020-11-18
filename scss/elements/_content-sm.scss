@@ -41,6 +41,9 @@ main {
   max-width: 450px;
   height: 90vw;
   width: 90vw;
+  .default_text {
+    font-size: 1.3rem;
+  }
 }
 
 .intro__scores >ul >li {
